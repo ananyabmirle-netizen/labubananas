@@ -1,18 +1,9 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import {
-  MessageSquare,
-  Calendar,
-  Vote,
-  Shield,
-  Bell,
-  Bot,
-  TrendingUp,
-  UsersRound,
-  Building2,
-  Award,
-} from "lucide-react"
+import { Navbar } from "@/components/navbar"
+import { AIChatbotButton } from "@/components/ai-chatbot-button"
+import { MessageSquare, Calendar, Vote, Shield, Bell, Scale } from "lucide-react"
 
 export default function LandingPage() {
   const features = [
@@ -42,62 +33,23 @@ export default function LandingPage() {
       description: "Get instant notifications about union news and announcements",
     },
     {
-      icon: Bot,
+      icon: Scale,
       title: "Chatbot and Legal Advice",
-      description: "Get instant answers to labor rights questions and union guidance",
+      description: "Get instant answers to labor law questions and union guidance",
     },
   ]
 
   const statistics = [
-    {
-      icon: UsersRound,
-      value: "14.3M",
-      label: "Union Members in North America",
-      description: "Join the growing movement",
-    },
-    {
-      icon: TrendingUp,
-      value: "18%",
-      label: "Higher Average Wages",
-      description: "Union vs. non-union workers",
-    },
-    {
-      icon: Building2,
-      value: "10,000+",
-      label: "Active Union Locals",
-      description: "Across all industries",
-    },
-    {
-      icon: Award,
-      value: "85%",
-      label: "Better Benefits Coverage",
-      description: "Healthcare and retirement",
-    },
+    { number: "2.5M+", label: "Union Members" },
+    { number: "15,000+", label: "Active Unions" },
+    { number: "98%", label: "User Satisfaction" },
+    { number: "$45B+", label: "Wages Protected" },
   ]
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-bold text-xl text-foreground hover:opacity-80 transition-opacity"
-          >
-            <span className="text-2xl">🍌</span>
-            <span>BunchUp</span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link href="/forum">
-              <Button variant="ghost" className="text-foreground hover:text-primary">
-                Sign In
-              </Button>
-            </Link>
-            <Link href="/forum">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Sign Up</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Navbar />
+      <AIChatbotButton />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
@@ -111,15 +63,15 @@ export default function LandingPage() {
           </h1>
 
           <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto text-pretty">
-            The modern platform connecting unions and their members across North America. Communicate, vote, schedule,
-            and grow together.
+            Empowering unions and their members across North America with tools to communicate, organize, and protect
+            worker rights.
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Link href="/forum">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02] transition-all text-lg px-8 py-6"
+                className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-105 transition-all text-lg px-8 py-6"
               >
                 Enter the Forum
               </Button>
@@ -128,7 +80,7 @@ export default function LandingPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto text-lg px-8 py-6 text-foreground hover:bg-accent hover:scale-[1.02] transition-all bg-transparent"
+                className="w-full sm:w-auto text-lg px-8 py-6 hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all bg-transparent"
               >
                 View Events
               </Button>
@@ -163,22 +115,18 @@ export default function LandingPage() {
 
       <section className="container mx-auto px-4 py-20 bg-muted/30">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">The Power of Unions</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-4">By the Numbers</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Real data showing why union membership matters
+            Join thousands of unions making a real difference for workers
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {statistics.map((stat, index) => (
-            <Card key={index} className="border-border text-center hover:shadow-lg transition-shadow">
+            <Card key={index} className="text-center border-2 hover:border-primary transition-colors">
               <CardContent className="pt-8 pb-6">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                  <stat.icon className="h-7 w-7 text-primary" />
-                </div>
-                <div className="text-4xl font-bold text-foreground mb-2">{stat.value}</div>
-                <div className="text-lg font-semibold text-card-foreground mb-1">{stat.label}</div>
-                <p className="text-sm text-muted-foreground">{stat.description}</p>
+                <div className="text-5xl font-bold text-primary mb-2">{stat.number}</div>
+                <div className="text-lg text-muted-foreground">{stat.label}</div>
               </CardContent>
             </Card>
           ))}
@@ -194,8 +142,8 @@ export default function LandingPage() {
               Join thousands of union members already using BunchUp to organize, communicate, and make their voices
               heard.
             </p>
-            <Link href="/forum">
-              <Button size="lg" variant="secondary" className="text-lg px-8 py-6 hover:scale-[1.02] transition-all">
+            <Link href="/sign-up">
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-6 hover:scale-105 transition-transform">
                 Get Started Now
               </Button>
             </Link>
@@ -206,25 +154,9 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-border bg-card">
         <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
-          <p>© 2025 BunchUp. Empowering unions across North America.</p>
+          <p>© 2025 BunchUp. Empowering unions across North America. 🍌</p>
         </div>
       </footer>
-
-      <LandingChatbot />
-    </div>
-  )
-}
-
-function LandingChatbot() {
-  return (
-    <div className="fixed bottom-6 right-6 z-50">
-      <Button
-        size="lg"
-        className="h-14 w-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all shadow-lg"
-        aria-label="Open AI Assistant"
-      >
-        <Bot className="h-6 w-6" />
-      </Button>
     </div>
   )
 }

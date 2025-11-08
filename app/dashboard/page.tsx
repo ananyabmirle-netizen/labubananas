@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { RoleCard } from "@/components/role-card"
-import { PollCard } from "@/components/poll-card"
 import { FeedbackForm } from "@/components/feedback-form"
 import { Shield, Users, Megaphone, CheckCircle2, XCircle } from "lucide-react"
 
@@ -122,33 +121,6 @@ export default function DashboardPage() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        </div>
-
-        {/* Polls Section */}
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Active Polls</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            <PollCard
-              title="Should we extend the contract negotiation deadline?"
-              options={[
-                { label: "Yes, extend by 2 weeks", votes: 234 },
-                { label: "No, keep current deadline", votes: 156 },
-                { label: "Extend by 1 month", votes: 89 },
-              ]}
-              totalVotes={479}
-              endsIn="2 days"
-            />
-            <PollCard
-              title="Preferred time for monthly meetings"
-              options={[
-                { label: "Weekday evenings", votes: 312 },
-                { label: "Weekend mornings", votes: 198 },
-                { label: "Weekend afternoons", votes: 145 },
-              ]}
-              totalVotes={655}
-              endsIn="5 days"
-            />
           </div>
         </div>
 

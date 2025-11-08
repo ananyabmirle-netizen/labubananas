@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ForumNavbar } from "@/components/forum-navbar"
+import { Navbar } from "@/components/navbar"
 import { ForumLeftSidebar } from "@/components/forum-left-sidebar"
 import { ForumRightSidebar } from "@/components/forum-right-sidebar"
 import { PostCard } from "@/components/post-card"
@@ -12,6 +12,8 @@ import { Search, SlidersHorizontal, Bot, TrendingUp, Flame, Clock } from "lucide
 import { cn } from "@/lib/utils"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Badge } from "@/components/ui/badge"
+import { useUser } from "@/lib/user-context"
+import { UnionAssistantWidget } from "@/components/union-assistant-widget"
 
 const posts = [
   {
@@ -87,6 +89,7 @@ export default function ForumPage() {
   const [feedFilter, setFeedFilter] = useState<"best" | "hot" | "popular">("best")
   const [searchValue, setSearchValue] = useState("")
   const [showChatbot, setShowChatbot] = useState(false)
+  const { user, isSignedIn } = useUser()
 
   const filterIcons = {
     best: TrendingUp,
@@ -95,8 +98,8 @@ export default function ForumPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <ForumNavbar />
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
 
       <div className="w-full">
         <div className="max-w-[1600px] mx-auto flex gap-6 px-4 py-6">
@@ -107,11 +110,10 @@ export default function ForumPage() {
 
           {/* Main Feed */}
           <main className="flex-1 min-w-0 space-y-4">
-            {/* Anonymous Status Badge */}
             <div className="flex items-center justify-between">
-              <Badge variant="secondary" className="gap-2 shadow-sm">
+              <Badge variant="secondary" className="gap-2 bg-banana-light border-banana-DEFAULT text-foreground">
                 <span className="h-2 w-2 bg-green-500 rounded-full" />
-                You are browsing anonymously
+                {isSignedIn && user ? `Signed in as ${user.name} (${user.role})` : "You are browsing anonymously"}
               </Badge>
               <Button variant="ghost" size="sm" className="text-xs text-muted-foreground hover:text-foreground">
                 What does this mean?
@@ -132,7 +134,8 @@ export default function ForumPage() {
                       onClick={() => setFeedFilter(filter)}
                       className={cn(
                         "capitalize text-xs px-3 gap-1.5 transition-all",
-                        feedFilter === filter && "bg-banana-DEFAULT text-foreground font-semibold shadow-sm",
+                        feedFilter === filter &&
+                          "bg-banana-DEFAULT text-foreground font-semibold shadow-sm hover:bg-banana-DEFAULT",
                       )}
                     >
                       <Icon className="h-3.5 w-3.5" />
@@ -158,7 +161,7 @@ export default function ForumPage() {
               {/* Filter Dropdown */}
               <Button
                 variant="outline"
-                className="gap-2 shrink-0 bg-card shadow-sm hover:bg-banana-light/50 transition-colors"
+                className="gap-2 shrink-0 bg-card shadow-sm hover:bg-banana-light transition-colors"
               >
                 <SlidersHorizontal className="h-4 w-4" />
                 <span className="hidden sm:inline"># Filter</span>
@@ -214,6 +217,9 @@ export default function ForumPage() {
           </div>
         </SheetContent>
       </Sheet>
+
+      {/* Union Assistant Widget - shows on all screen sizes */}
+      <UnionAssistantWidget />
     </div>
   )
 }
