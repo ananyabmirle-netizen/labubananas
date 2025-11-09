@@ -46,7 +46,7 @@ Think of it as a **"Reddit for labor unions"**—a safe digital space for worker
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React, Vircel   
+- **Frontend:** React, Vercel   
 - **Backend:** Python (Flask/FastAPI)  
 - **AI Integration:** Chatbot API for legal information and natural language responses using Google Gemini
 
