@@ -1,11 +1,11 @@
-# 🍌 Form a Bunch  
+# 🍌 BunchUp  
 ### by Team Labubananas | CornHacks 2025
 
 ---
 
 ## 🌟 Overview
 
-**Form a Bunch** is a social media–style communication platform designed to empower workers and unions by improving transparency, collaboration, and organization.  
+**BunchUp** is a social media–style communication platform designed to empower workers and unions by improving transparency, collaboration, and organization.  
 It bridges the gap between employees and union representatives, making it easier to **form**, **join**, and **engage** with unions.
 
 Our mission is simple: make labor organization as easy and accessible as creating a group chat.
@@ -31,7 +31,7 @@ Their resilience and need for unity motivated our team to create a tool that wou
 
 ## 🚀 Solution
 
-**Form a Bunch** provides an intuitive, all-in-one communication hub for unions and employees.  
+**BunchUp** provides an intuitive, all-in-one communication hub for unions and employees.  
 Think of it as a **"Reddit for labor unions"**—a safe digital space for workers to organize, communicate, and advocate for better working conditions.
 
 ### Core Features
@@ -46,7 +46,7 @@ Think of it as a **"Reddit for labor unions"**—a safe digital space for worker
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React  
+- **Frontend:** React, Vircel   
 - **Backend:** Python (Flask/FastAPI)  
 - **AI Integration:** Chatbot API for legal information and natural language responses using Google Gemini
 
